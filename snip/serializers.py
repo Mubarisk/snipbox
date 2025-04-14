@@ -25,6 +25,18 @@ class SnippetSerializer(serializers.ModelSerializer):
             tag=tag, user=self.context["request"].user, **validated_data
         )
 
+    def update(self, instance, validated_data):
+        tag_title = validated_data.pop("tag", None)
+        if tag_title:
+            tag, created = Tag.objects.get_or_create(
+                title=tag_title, user=self.context["request"].user
+            )
+            instance.tag = tag
+        instance.title = validated_data.get("title", instance.title)
+        instance.note = validated_data.get("note", instance.note)
+        instance.save()
+        return instance
+
 
 class HyperLinkSnippetSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
