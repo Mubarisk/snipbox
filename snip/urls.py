@@ -8,5 +8,4 @@ router.register(r"tags", TagViewSet, basename="tag")
 
 urlpatterns = [
     path("", include(router.urls)),
-    # path("overview/", OverviewSnippetView.as_view(), name="overview-snippets"),
 ]

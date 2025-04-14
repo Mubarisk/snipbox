@@ -33,10 +33,9 @@ class SnippetViewSet(viewsets.ModelViewSet):
         )
 
 
-class TagViewSet(viewsets.ModelViewSet):
+class TagViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TagSerializer
     permission_classes = [permissions.IsAuthenticated]
-    http_method_names = ["list", "retrieve"]
 
     def get_queryset(self):
         return Tag.objects.filter(user=self.request.user)
