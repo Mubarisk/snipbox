@@ -12,7 +12,7 @@
             return self.title
 
 
-    class   (models.Model):
+    class Snippet(models.Model):
         title = models.CharField(max_length=100)
         note = models.TextField()
         created_at = models.DateTimeField(auto_now_add=True)
