@@ -1,10 +1,12 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import SnippetViewSet
+from .views import SnippetViewSet, TagViewSet
 
 router = DefaultRouter()
-router.register(r"", SnippetViewSet, basename="snippet")
+router.register(r"snippets", SnippetViewSet, basename="snippet")
+router.register(r"tags", TagViewSet, basename="tag")
 
 urlpatterns = [
     path("", include(router.urls)),
+    # path("overview/", OverviewSnippetView.as_view(), name="overview-snippets"),
 ]
